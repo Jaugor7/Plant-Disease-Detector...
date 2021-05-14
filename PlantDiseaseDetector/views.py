@@ -21,7 +21,7 @@ from glob import glob
 from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing import image
 
-model=load_model("model_inception")
+model=load_model("model_inception.h5")
 
 def index(request):
     return render(request, 'index.html')
@@ -47,25 +47,25 @@ def model_predict(img, model):
     preds = preds[0]
 
     if preds==0:
-        preds="The Disease is Early Blight."
-    elif preds==1:
         preds="The Disease is Bacterial Spot."
+    elif preds==1:
+        preds="The Disease is Early Blight."
     elif preds==2:
         preds="The Disease is Late Blight."
     elif preds==3:
-        preds="No Disease. Healthy Leaf."
-    elif preds==4:
-        preds="The Disease is Yellow Leaf Curl Virus"
-    elif preds==5:
-        preds="The Disease is Target Spot."
-    elif preds==6:
-        preds="The Disease is Septoria Leaf Spot."
-    elif preds==7:
-        preds="The Disease is Mosaic Virus."
-    elif preds==8:
         preds="The Disease is Leaf Mold."
-    elif preds==9:
+    elif preds==4:
+        preds="The Disease is Septoria Leaf Spot."
+    elif preds==5:
         preds="The Disease is Spider Mites."
+    elif preds==6:
+        preds="The Disease is Target Spot."
+    elif preds==7:
+        preds="The Disease is Yellow Leaf Curl Virus"
+    elif preds==8:
+        preds="The Disease is Mosaic Virus."
+    elif preds==9:
+        preds="No Disease. Healthy Leaf."
     
     return preds
 
